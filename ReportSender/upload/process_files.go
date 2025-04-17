@@ -72,7 +72,6 @@ func ProcessFiles(dirPath string) error {
 }
 
 func processFile(jsonPath string) error {
-
 	jsonData, err := os.ReadFile(jsonPath)
 	if err != nil {
 		return fmt.Errorf("ошибка чтения JSON файла: %w", err)

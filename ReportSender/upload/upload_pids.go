@@ -81,7 +81,7 @@ func UploadFilesInSingleCommit(dirPath, owner, repo, accessToken string) error {
 
 	log.Printf("Current branch HEAD commit: %s", ref.Object.SHA)
 
-	date := time.Now().Add(2 * 24 * time.Hour).Format(time.DateOnly)
+	date := time.Now().Format(time.DateOnly)
 	treeItems, err := prepareTreeItems(dirPath, date)
 	if err != nil {
 		return fmt.Errorf("error preparing tree items: %w", err)
@@ -189,6 +189,7 @@ func prepareTreeItems(dirPath, datePrefix string) ([]GitHubTreeRequestItem, erro
 		if err != nil {
 			return nil, fmt.Errorf("failed to remove xml file: %w", err)
 		}
+		log.Printf("remove file %s", path)
 	}
 
 	return treeItems, nil
