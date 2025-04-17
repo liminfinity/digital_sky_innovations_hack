@@ -31,7 +31,7 @@ import MainButton from '../components/MainButton.vue'
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   position: fixed;
   background-color: #f9f7fc;
   z-index: 10;
