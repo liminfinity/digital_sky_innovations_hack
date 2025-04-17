@@ -1,9 +1,11 @@
 <script setup lang="ts">
-
+defineProps({
+  isPrimary: Boolean
+})
 </script>
 
 <template>
-  <button class="primary">
+  <button :class="isPrimary ? 'primary' : 'secondary'">
     <slot/>
   </button>
 </template>

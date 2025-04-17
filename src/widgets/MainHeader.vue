@@ -7,8 +7,8 @@ import MainButton from "../components/MainButton.vue";
     <h1 class="title">ПИД-регулятор</h1>
     <input type="text" class="search" placeholder="Поиск по ПИДу / параметру...">
     <div class="btns">
-      <MainButton>Сохранить</MainButton>
-      <MainButton>История изменений</MainButton>
+      <MainButton :is-primary="true">Сохранить</MainButton>
+      <MainButton :is-primary="true">История изменений</MainButton>
     </div>
   </div>
 </template>
