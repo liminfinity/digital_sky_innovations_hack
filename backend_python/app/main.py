@@ -3,11 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routers import auth_router, pid_router
 from app.db import init_db
 from contextlib import asynccontextmanager
+from app.lib.pid import pid_xml_to_json
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
+    pid_xml_to_json()
     yield
 
 

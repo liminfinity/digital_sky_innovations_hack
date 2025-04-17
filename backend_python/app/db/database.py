@@ -1,6 +1,6 @@
 from sqlite3 import connect, Connection, Row
 from app.core.config import DATABASE_URL
-from app.core.security import hash_password
+from app.lib.security import hash_password
 
 
 def get_connection() -> Connection:
@@ -18,6 +18,16 @@ def init_db() -> None:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 username TEXT UNIQUE NOT NULL,
                 password TEXT NOT NULL
+            )
+            """
+        )
+
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS pids (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                filename TEXT NOT NULL,
+                created_at TEXT NOT NULL
             )
             """
         )

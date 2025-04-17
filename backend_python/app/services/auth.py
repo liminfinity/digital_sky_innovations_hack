@@ -1,6 +1,6 @@
 from app.db import get_connection
 from app.schemas.auth import LoginUserDto, LoginUserResponse
-from app.core.security import verify_password
+from app.lib.security import verify_password
 
 
 class AuthService:

@@ -1,34 +1,52 @@
 from app.schemas.pid import GetPidsResponse, PID, SavePidsDto
-from app.core.settings import PID_XML_PATH
-import xmltodict as xml
+from app.core.router import PIDS_PATH, PID_ORIGIN_PATH
+from app.db import get_connection
+from datetime import datetime
+import json
+from pathlib import Path
 from typing import Any
+from app.lib.pid import update_pid_xml
 
 
 class PidService:
     async def get_pids(self) -> GetPidsResponse:
-        with open(PID_XML_PATH, encoding="utf-8") as f:
-            pids_dict = xml.parse(f.read())
+        json_data: dict[str, Any] = {}
 
-        pid_structure: dict = pids_dict.get("fsigmodule_structure", {})
-        pid_modules: list[dict] = pid_structure.get("fsigmodule", [])
+        latest_file_path: Path | None = None
 
-        pids = [
-            self.__parse_pid_module(module)
-            for module in pid_modules
-            if module.get("@type") == "pid"
-        ]
+        with get_connection() as conn:
+            row = conn.execute(
+                "SELECT filename FROM pids ORDER BY created_at DESC LIMIT 1"
+            ).fetchone()
 
+        if row:
+            candidate_path: Path = PIDS_PATH / row["filename"]
+            if candidate_path.exists():
+                latest_file_path = candidate_path
+
+        if latest_file_path is None:
+            latest_file_path = PID_ORIGIN_PATH
+
+        with open(latest_file_path, encoding="utf-8") as f:
+            json_data = json.load(f)
+
+        pids = [PID(**item) for item in json_data.get("data", [])]
         return GetPidsResponse(data=pids)
 
-    def __parse_pid_module(self, module: dict[str, Any]) -> PID:
-        raw_params: list[dict] = module.get("param", [])
-
-        formatted_params = {
-            param.get("@name"): param.get("#text") for param in raw_params
-        }
-
-        return PID(name=module.get("@name"), **formatted_params)
-
     async def save_pids(self, pids_dto: SavePidsDto) -> None:
-        with open("xml_test.xml", "w", encoding="utf-8") as f:
-            f.write(xml.unparse(pids_dto.model_dump()))
+        time = datetime.now()
+        timestamp = int(time.timestamp())
+        created_at = time.isoformat()
+
+        filename = f"pid_{timestamp}.json"
+
+        with open(PIDS_PATH / filename, "w", encoding="utf-8") as f:
+            json.dump(pids_dto.model_dump(), f, indent=2)
+
+        with get_connection() as conn:
+            conn.execute(
+                "INSERT INTO pids (filename, created_at) VALUES (?, ?)",
+                (filename, created_at),
+            )
+
+        update_pid_xml(pids_dto)

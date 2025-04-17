@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, status
-from fastapi.responses import JSONResponse
+from fastapi.responses import Response
 from app.schemas.pid import GetPidsResponse, SavePidsDto
 from app.services import PidService
 from app.dependencies import get_pid_service
@@ -18,4 +18,4 @@ async def save_pids(
     pids_dto: SavePidsDto, service: PidService = Depends(get_pid_service)
 ):
     await service.save_pids(pids_dto)
-    return JSONResponse(None, status_code=status.HTTP_204_NO_CONTENT)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
