@@ -4,7 +4,7 @@ from app.core.security import verify_password
 
 
 class AuthService:
-    def login(self, login_user_dto: LoginUserDto) -> LoginUserResponse | None:
+    async def login(self, login_user_dto: LoginUserDto) -> LoginUserResponse | None:
         username, password = login_user_dto.username, login_user_dto.password
         with get_connection() as conn:
             row = conn.execute(

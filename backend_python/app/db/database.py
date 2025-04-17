@@ -1,5 +1,5 @@
 from sqlite3 import connect, Connection, Row
-from app.core import DATABASE_URL
+from app.core.config import DATABASE_URL
 from app.core.security import hash_password
 
 
