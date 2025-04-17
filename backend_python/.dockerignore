@@ -35,3 +35,6 @@ pytest_cache/
 
 pids/pid_*.json
 openapi.json
+
+.gitignore
+tests
