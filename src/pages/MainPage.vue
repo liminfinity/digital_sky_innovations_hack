@@ -8,7 +8,7 @@ import PIDCard from "../widgets/PIDCard.vue";
   <div class="content">
     <MainHeader />
     <div class="cards-grid">
-      <PIDCard v-for="i in 8" />
+      <PIDCard v-for="i in 8" :key="i" />
     </div>
   </div>
 </div>

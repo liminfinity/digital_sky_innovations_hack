@@ -104,7 +104,7 @@ const updateSliderFromInput = (index) => {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 24px;
-  color: #000;
+  color: #3510B8;
 }
 
 .slider-container {
@@ -196,7 +196,7 @@ const updateSliderFromInput = (index) => {
   top: 15px;
   left: 0;
   height: 6px;
-  background-color: #2563eb;
+  background-color: #4414EC;
   border-radius: 3px;
   pointer-events: none;
   z-index: 1;
@@ -210,7 +210,7 @@ const updateSliderFromInput = (index) => {
   left: 0;
   width: 100%;
   height: 6px;
-  background-color: #f0f0f0;
+  background-color: #CBC2EC;
   border-radius: 3px;
 }
 </style>
