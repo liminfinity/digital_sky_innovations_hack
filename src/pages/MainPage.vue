@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import MainHeader from '../widgets/MainHeader.vue'
 import PIDCard from '../widgets/PIDCard.vue'
+import {usePidsStore} from "../store/pidsStore.ts";
+
+const store = usePidsStore()
+
 </script>
 
 <template>
@@ -8,7 +12,7 @@ import PIDCard from '../widgets/PIDCard.vue'
     <div class="content">
       <MainHeader />
       <div class="cards-grid">
-        <PIDCard v-for="i in 8" :key="i" />
+        <PIDCard :pid="pid" v-for="pid in store.data" :key="pid.name" />
       </div>
     </div>
   </div>
