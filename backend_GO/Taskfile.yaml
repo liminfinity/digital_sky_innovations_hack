@@ -1,0 +1,10 @@
+version: '3'
+
+tasks:
+  pid:
+    aliases:
+      - pid_history
+      - run_pid_history 
+    desc: "start pid history app"
+    cmds:
+      - go run cmd/pidHistory/main.go --config=./config/config.yaml
