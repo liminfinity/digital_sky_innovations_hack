@@ -15,6 +15,7 @@ import MainButton from "../components/MainButton.vue";
 
 <style scoped lang="scss">
 .wrapper-header {
+  padding: 60px 0;
   display: flex;
   flex-direction: row;
   align-items: center;

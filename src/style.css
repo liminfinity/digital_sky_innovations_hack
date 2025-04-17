@@ -1,6 +1,7 @@
 @import "reset-css";
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: #F9F7FC;
 }
 
 body {
@@ -13,5 +14,4 @@ body {
 }
 
 #app {
-  padding-top: 20px;
 }
