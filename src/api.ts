@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://192.168.62.236:8000/api/v1'
+const baseUrl = 'https://rninl-92-126-119-99.a.free.pinggy.link/api/v1'
 
 export async function loginApi(username: string, password: string) {
   let res
@@ -23,7 +23,7 @@ export async function getPids() {
   return res
 }
 
-export async function savePidsApi(pids) {
+export async function savePidsApi(pids: any) {
   let res
   await axios
     .patch(baseUrl + '/pids', { data: pids })

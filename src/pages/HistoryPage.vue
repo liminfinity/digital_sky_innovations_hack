@@ -26,14 +26,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import MainButton from '../components/MainButton.vue'
 import router from '../router/index.js'
 
 const historyItems = ref(
   Array(20)
-    .fill()
     .map(() => ({
       time: '12:00',
       date: '17.04.2025',

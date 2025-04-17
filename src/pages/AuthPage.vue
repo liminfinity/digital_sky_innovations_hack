@@ -8,7 +8,7 @@ const userName = ref('')
 const password = ref('')
 
 async function loginUser() {
-  const res = await loginApi(userName.value, password.value)
+  await loginApi(userName.value, password.value)
   await router.push('/main')
 }
 </script>

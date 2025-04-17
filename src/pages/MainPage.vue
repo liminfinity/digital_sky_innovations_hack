@@ -7,7 +7,7 @@ import { getPids } from '../api.ts'
 
 const store = usePidsStore()
 
-function updatePids(v) {
+function updatePids(v: any) {
   console.log(v)
   store.data = v.data
   console.log(store.data)
@@ -15,6 +15,7 @@ function updatePids(v) {
 
 onMounted(async () => {
   const res = await getPids()
+  //@ts-ignore
   if (res) store.data = res.data
   console.log(store.data)
 })
