@@ -30,7 +30,6 @@ def init_db() -> None:
                 "INSERT INTO users (username, password) VALUES (?, ?)",
                 ("user1", hash_password("password1")),
             )
-            
 
         if "user2" not in existing_users:
             conn.execute(

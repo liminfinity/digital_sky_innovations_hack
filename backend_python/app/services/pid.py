@@ -1,4 +1,4 @@
-from app.schemas.pid import GetPidsResponse, PID
+from app.schemas.pid import GetPidsResponse, PID, SavePidsDto
 from app.core.settings import PID_XML_PATH
 import xmltodict as xml
 from typing import Any
@@ -28,3 +28,7 @@ class PidService:
         }
 
         return PID(name=module.get("@name"), **formatted_params)
+
+    async def save_pids(self, pids_dto: SavePidsDto) -> None:
+        with open("xml_test.xml", "w", encoding="utf-8") as f:
+            f.write(xml.unparse(pids_dto.model_dump()))

@@ -18,3 +18,7 @@ class PID(BaseModel):
 
 class GetPidsResponse(BaseModel):
     data: list[PID]
+
+
+class SavePidsDto(BaseModel):
+    data: list[PID]
