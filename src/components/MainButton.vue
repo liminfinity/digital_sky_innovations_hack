@@ -7,7 +7,7 @@ defineProps({
 
 <template>
   <button :class="isPrimary ? 'primary' : 'secondary'">
-    <img :src="iconPath" alt="" />
+    <img :src="iconPath" alt="" v-if="iconPath" />
     <slot />
   </button>
 </template>

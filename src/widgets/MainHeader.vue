@@ -11,13 +11,15 @@ import MainButton from '../components/MainButton.vue'
         <MainButton :is-primary="false">Reset to original</MainButton>
       </div>
     </div>
-    <input type="text" class="search" placeholder="Поиск по ПИДу..." />
+    <input type="text" class="search" placeholder="Поиск по ПИДу..."/>
     <div class="btns">
       <MainButton :is-primary="true" icon-path="src/assets/save.svg"
-        >Сохранить</MainButton
+      >Сохранить
+      </MainButton
       >
       <MainButton :is-primary="true" icon-path="src/assets/history.svg"
-        >История изменений</MainButton
+      >История изменений
+      </MainButton
       >
     </div>
   </div>
@@ -25,11 +27,16 @@ import MainButton from '../components/MainButton.vue'
 
 <style scoped lang="scss">
 .wrapper-header {
-  padding: 60px 0;
+  padding: 30px 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  background-color: #f9f7fc;
+  z-index: 10;
+  width: 100%;
+  left: 0;
 }
 
 .btns {

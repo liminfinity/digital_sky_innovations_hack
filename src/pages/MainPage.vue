@@ -33,5 +33,6 @@ import PIDCard from '../widgets/PIDCard.vue'
   grid-template-rows: repeat(5, 1fr);
   grid-column-gap: 100px;
   grid-row-gap: 20px;
+  margin-top: 150px;
 }
 </style>
