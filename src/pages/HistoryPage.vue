@@ -3,7 +3,8 @@
     <header class="header">
       <h1 class="title">История изменений</h1>
       <input type="text" class="search" placeholder="Поиск по ПИДу..."/>
-      <MainButton :is-primary="true"><span class="icon">↩</span>
+      <MainButton :is-primary="true" @click="router.back()">
+        <span class="icon">↩</span>
         Вернуться к редактору ПИД
       </MainButton>
     </header>
@@ -25,6 +26,7 @@
 <script setup>
 import {ref} from 'vue';
 import MainButton from "../components/MainButton.vue";
+import router from "../router/index.js";
 
 // Generate more items to demonstrate scrolling
 const historyItems = ref(

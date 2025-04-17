@@ -1,6 +1,6 @@
 <script setup lang="ts">
-
 import MainButton from "../components/MainButton.vue";
+import router from "../router/index.js";
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import MainButton from "../components/MainButton.vue";
           <label for="password">Пароль</label>
           <input id="password">
         </div>
-        <MainButton class="btn" :is-primary="true">Войти</MainButton>
+        <MainButton @click="router.push('/main')" class="btn" :is-primary="true">Войти</MainButton>
       </div>
     </div>
   </div>

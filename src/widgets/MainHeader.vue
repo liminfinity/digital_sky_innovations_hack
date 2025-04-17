@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import MainButton from '../components/MainButton.vue'
+import router from "../router/index.js";
 </script>
 
 <template>
@@ -17,10 +18,9 @@ import MainButton from '../components/MainButton.vue'
       >Сохранить
       </MainButton
       >
-      <MainButton :is-primary="true" icon-path="src/assets/history.svg"
-      >История изменений
-      </MainButton
-      >
+      <MainButton @click="router.push('/history')" :is-primary="true" icon-path="src/assets/history.svg">
+        История изменений
+      </MainButton>
     </div>
   </div>
 </template>
