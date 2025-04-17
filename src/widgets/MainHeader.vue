@@ -1,6 +1,6 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import MainButton from '../components/MainButton.vue'
-import router from "../router/index.js";
+import router from '../router/index.js'
 </script>
 
 <template>
@@ -12,20 +12,22 @@ import router from "../router/index.js";
         <MainButton :is-primary="false">Reset to original</MainButton>
       </div>
     </div>
-    <input type="text" class="search" placeholder="Поиск по ПИДу..."/>
+    <input class="search" placeholder="Поиск по ПИДу..." type="text" />
     <div class="btns">
       <MainButton :is-primary="true" icon-path="src/assets/save.svg"
-      >Сохранить
-      </MainButton
-      >
-      <MainButton @click="router.push('/history')" :is-primary="true" icon-path="src/assets/history.svg">
+        >Сохранить
+      </MainButton>
+      <MainButton
+        :is-primary="true"
+        icon-path="src/assets/history.svg"
+        @click="router.push('/history')">
         История изменений
       </MainButton>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .wrapper-header {
   padding: 30px 0;
   display: flex;

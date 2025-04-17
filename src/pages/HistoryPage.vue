@@ -2,7 +2,7 @@
   <div class="history-page">
     <header class="header">
       <h1 class="title">История изменений</h1>
-      <input type="text" class="search" placeholder="Поиск по ПИДу..."/>
+      <input class="search" placeholder="Поиск по ПИДу..." type="text" />
       <MainButton :is-primary="true" @click="router.back()">
         <span class="icon">↩</span>
         Вернуться к редактору ПИД
@@ -11,7 +11,10 @@
 
     <div class="history-container">
       <div class="history-list">
-        <div v-for="(item, index) in historyItems" :key="index" class="history-item">
+        <div
+          v-for="(item, index) in historyItems"
+          :key="index"
+          class="history-item">
           <div class="item-info">
             <div class="timestamp">{{ item.time }} {{ item.date }}</div>
             <div class="user">{{ item.user }}</div>
@@ -24,18 +27,19 @@
 </template>
 
 <script setup>
-import {ref} from 'vue';
-import MainButton from "../components/MainButton.vue";
-import router from "../router/index.js";
+import { ref } from 'vue'
+import MainButton from '../components/MainButton.vue'
+import router from '../router/index.js'
 
-// Generate more items to demonstrate scrolling
 const historyItems = ref(
-    Array(20).fill().map(() => ({
+  Array(20)
+    .fill()
+    .map(() => ({
       time: '12:00',
       date: '17.04.2025',
-      user: 'Пользователь(логин)'
+      user: 'Пользователь(логин)',
     }))
-);
+)
 </script>
 
 <style lang="scss" scoped>
@@ -62,7 +66,7 @@ const historyItems = ref(
   line-height: 24px;
   letter-spacing: 0;
   vertical-align: middle;
-  color: #3510B8;
+  color: #3510b8;
 }
 
 .search {
@@ -86,7 +90,9 @@ const historyItems = ref(
 }
 
 .history-list {
-  max-height: calc(100vh - 150px); /* Adjust based on header height and padding */
+  max-height: calc(
+    100vh - 150px
+  ); /* Adjust based on header height and padding */
   overflow-y: auto;
   padding: 0;
 }

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 defineProps({
   isPrimary: Boolean,
   iconPath: String,
@@ -7,18 +7,19 @@ defineProps({
 
 <template>
   <button :class="isPrimary ? 'primary' : 'secondary'">
-    <img :src="iconPath" alt="" v-if="iconPath" />
+    <img v-if="iconPath" :src="iconPath" alt="" />
     <slot />
   </button>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 button {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
+
 .primary {
   background-color: #4414ec;
   color: #fff;

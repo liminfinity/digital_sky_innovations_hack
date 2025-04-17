@@ -3,30 +3,30 @@
     <h2 class="sound-card-title">Название пида</h2>
 
     <div
-      class="slider-container"
       v-for="(slider, index) in sliders"
-      :key="index">
+      :key="index"
+      class="slider-container">
       <label class="slider-label">{{ slider.label }}</label>
       <div class="slider-control">
         <!-- Changed to input field -->
         <input
-          type="text"
-          class="left-value"
           v-model.number="slider.value"
+          class="left-value"
+          type="text"
           @change="updateSliderFromInput(index)" />
         <div class="slider-wrapper">
           <input
-            type="range"
-            :min="slider.min"
-            :max="slider.max"
             v-model.number="slider.value"
-            class="slider" />
+            :max="slider.max"
+            :min="slider.min"
+            class="slider"
+            type="range" />
           <!-- The blue progress bar -->
           <div
-            class="slider-progress"
             :style="{
               width: `${((slider.value - slider.min) / (slider.max - slider.min)) * 100}%`,
-            }"></div>
+            }"
+            class="slider-progress"></div>
           <div class="slider-progress-back"></div>
           <!-- The gray background track is handled in CSS -->
         </div>

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import MainHeader from '../widgets/MainHeader.vue'
 import PIDCard from '../widgets/PIDCard.vue'
 </script>
@@ -14,7 +14,7 @@ import PIDCard from '../widgets/PIDCard.vue'
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .wrapper-main-page {
   width: 100vw;
   height: 100vh;
@@ -22,6 +22,7 @@ import PIDCard from '../widgets/PIDCard.vue'
   align-items: center;
   justify-content: center;
 }
+
 .content {
   width: 80%;
   height: 100%;

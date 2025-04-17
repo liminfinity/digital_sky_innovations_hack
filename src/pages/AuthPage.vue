@@ -1,6 +1,6 @@
-<script setup lang="ts">
-import MainButton from "../components/MainButton.vue";
-import router from "../router/index.js";
+<script lang="ts" setup>
+import MainButton from '../components/MainButton.vue'
+import router from '../router/index.js'
 </script>
 
 <template>
@@ -10,21 +10,23 @@ import router from "../router/index.js";
       <div class="form-values">
         <div class="inputs">
           <label for="login">Логин</label>
-          <input id="login">
+          <input id="login" />
           <label for="password">Пароль</label>
-          <input id="password">
+          <input id="password" />
         </div>
-        <MainButton @click="router.push('/main')" class="btn" :is-primary="true">Войти</MainButton>
+        <MainButton :is-primary="true" class="btn" @click="router.push('/main')"
+          >Войти
+        </MainButton>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .wrapper-auth {
   width: 100vw;
   height: 100vh;
-  background-color: #F9F7FC;
+  background-color: #f9f7fc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,7 +44,7 @@ import router from "../router/index.js";
 }
 
 .title {
-  color: #280C8A;
+  color: #280c8a;
   font-weight: 800;
   font-size: 32px;
 }
@@ -65,13 +67,14 @@ import router from "../router/index.js";
   text-align: center;
 }
 
-#login, #password {
+#login,
+#password {
   font-weight: 400;
   font-size: 16px;
 }
 
 input {
-  border: 1px solid #896DEC;
+  border: 1px solid #896dec;
   border-radius: 8px;
   height: 30px;
 }
