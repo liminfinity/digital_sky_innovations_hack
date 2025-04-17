@@ -16,9 +16,28 @@ class PID(BaseModel):
     preset_allowed_at_high: float
 
 
+class PIDFile(BaseModel):
+    id: int
+    filename: str
+    created_at: str
+
+
+class GetPidsData(BaseModel):
+    pids: list[PID]
+    changes: list[PIDFile]
+
+
 class GetPidsResponse(BaseModel):
-    data: list[PID]
+    data: GetPidsData
+
+
+class GetPidsByIdResponse(BaseModel):
+    data: GetPidsData
 
 
 class SavePidsDto(BaseModel):
     data: list[PID]
+
+
+class SavePidsResponse(PIDFile):
+    pass

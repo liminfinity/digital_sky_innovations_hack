@@ -1,6 +1,10 @@
-from fastapi import APIRouter, Depends, status
-from fastapi.responses import Response
-from app.schemas.pid import GetPidsResponse, SavePidsDto
+from fastapi import APIRouter, Depends
+from app.schemas.pid import (
+    GetPidsResponse,
+    SavePidsDto,
+    SavePidsResponse,
+    GetPidsByIdResponse,
+)
 from app.services import PidService
 from app.dependencies import get_pid_service
 
@@ -13,9 +17,16 @@ async def get_pids(service: PidService = Depends(get_pid_service)):
     return pids
 
 
-@router.patch("")
+@router.get("/{pid_id}", response_model=GetPidsByIdResponse)
+async def get_pids_by_id(pid_id: int, service: PidService = Depends(get_pid_service)):
+    pids = await service.get_pids_by_id(pid_id)
+    return pids
+
+
+@router.patch("", response_model=SavePidsResponse)
 async def save_pids(
-    pids_dto: SavePidsDto, service: PidService = Depends(get_pid_service)
+    pids_dto: SavePidsDto,
+    service: PidService = Depends(get_pid_service),
 ):
-    await service.save_pids(pids_dto)
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
+    change = await service.save_pids(pids_dto)
+    return change
