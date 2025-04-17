@@ -2,27 +2,31 @@
   <div class="sound-card">
     <h2 class="sound-card-title">Название пида</h2>
 
-    <div class="slider-container" v-for="(slider, index) in sliders" :key="index">
+    <div
+      class="slider-container"
+      v-for="(slider, index) in sliders"
+      :key="index">
       <label class="slider-label">{{ slider.label }}</label>
       <div class="slider-control">
         <!-- Changed to input field -->
         <input
-            type="text"
-            class="left-value"
-            v-model.number="slider.leftValue"
-            @change="updateSliderFromInput(index)"
-        >
+          type="text"
+          class="left-value"
+          v-model.number="slider.value"
+          @change="updateSliderFromInput(index)" />
         <div class="slider-wrapper">
           <input
-              type="range"
-              :min="slider.min"
-              :max="slider.max"
-              v-model.number="slider.value"
-              class="slider"
-              @input="updateInputFromSlider(index)"
-          >
+            type="range"
+            :min="slider.min"
+            :max="slider.max"
+            v-model.number="slider.value"
+            class="slider" />
           <!-- The blue progress bar -->
-          <div class="slider-progress" :style="{ width: `${(slider.value - slider.min) / (slider.max - slider.min) * 100}%` }"></div>
+          <div
+            class="slider-progress"
+            :style="{
+              width: `${((slider.value - slider.min) / (slider.max - slider.min)) * 100}%`,
+            }"></div>
           <div class="slider-progress-back"></div>
           <!-- The gray background track is handled in CSS -->
         </div>
@@ -32,62 +36,45 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-// Define reactive sliders array with initial values
 const sliders = ref([
   {
     label: 'Параметр P',
     min: 0,
     max: 100,
-    value: 80,
-    leftValue: 64
+    value: 50,
   },
   {
-    label: 'Параметр P',
+    label: 'Параметр I',
     min: 0,
     max: 100,
-    value: 80,
-    leftValue: 64
+    value: 50,
   },
   {
-    label: 'Параметр P',
+    label: 'Параметр D',
     min: 0,
     max: 100,
-    value: 80,
-    leftValue: 64
-  }
-]);
+    value: 50,
+  },
+])
 
-// Update the input value when the slider changes
-const updateInputFromSlider = (index) => {
-  // For example: if slider is at 80, left value shows 64 (80% of 80)
-  sliders.value[index].leftValue = Math.round(sliders.value[index].value * 0.8);
-};
-
-// Update the slider value when the input changes
 const updateSliderFromInput = (index) => {
-  let inputValue = sliders.value[index].leftValue;
-
   // Validate input
-  if (isNaN(inputValue)) {
-    inputValue = 0;
+  if (
+    sliders.value[index].value < sliders.value[index].min ||
+    sliders.value[index].value > sliders.value[index].max
+  ) {
+    alert('поменяй')
   }
 
-  // Convert from left value to slider value (reverse of the formula above)
-  // If left value is 64, slider should be 80 (64 / 0.8)
-  let sliderValue = Math.round(inputValue / 0.8);
+  sliderValue = Math.max(
+    sliders.value[index].min,
+    Math.min(sliders.value[index].max, sliderValue)
+  )
 
-  // Clamp to min/max
-  sliderValue = Math.max(sliders.value[index].min,
-      Math.min(sliders.value[index].max, sliderValue));
-
-  // Update slider value
-  sliders.value[index].value = sliderValue;
-
-  // Update left value to ensure it's valid
-  sliders.value[index].leftValue = Math.round(sliderValue * 0.8);
-};
+  sliders.value[index].value = sliderValue
+}
 </script>
 
 <style scoped>
@@ -104,7 +91,7 @@ const updateSliderFromInput = (index) => {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 24px;
-  color: #3510B8;
+  color: #3510b8;
 }
 
 .slider-container {
@@ -196,7 +183,7 @@ const updateSliderFromInput = (index) => {
   top: 15px;
   left: 0;
   height: 6px;
-  background-color: #4414EC;
+  background-color: #4414ec;
   border-radius: 3px;
   pointer-events: none;
   z-index: 1;
@@ -210,7 +197,7 @@ const updateSliderFromInput = (index) => {
   left: 0;
   width: 100%;
   height: 6px;
-  background-color: #CBC2EC;
+  background-color: #cbc2ec;
   border-radius: 3px;
 }
 </style>
