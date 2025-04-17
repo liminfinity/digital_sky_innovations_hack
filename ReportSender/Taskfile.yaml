@@ -1,0 +1,9 @@
+version: '3'
+
+tasks:
+  clear:
+    aliases:
+      - clear_all
+    desc: "send files to github and clear database"
+    cmds:
+      - go run main.go --files=./files --db=./app.db --name=app.db  --owner=kurochkinivan --repo=drone-config-history --token=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

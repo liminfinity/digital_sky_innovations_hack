@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<fsigmodule_structure>
+
+	<fsigmodule name="zero" type="constant">
+		<param name="value">0</param>
+	</fsigmodule>
+
+	<fsigmodule name="one" type="constant">
+		<param name="value">1</param>
+	</fsigmodule>
+
+	<fsigmodule name="half" type="constant">
+		<param name="value">0.5</param>
+	</fsigmodule>
+
+	<fsigmodule name="third" type="constant">
+		<param name="value">0.3</param>
+	</fsigmodule>
+
+	<fsigmodule name="rotor1_freq_measured" type="gain">
+		<input type="input">rotor1_freq</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="rotor2_freq_measured" type="gain">
+		<input type="input">rotor2_freq</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="rotor3_freq_measured" type="gain">
+		<input type="input">rotor3_freq</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="rotor4_freq_measured" type="gain">
+		<input type="input">rotor4_freq</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_enable1" type="comparator">
+		<input type="input0">udp_enable1</input>
+		<input type="input1">half</input>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_enable2" type="comparator">
+		<input type="input0">udp_enable2</input>
+		<input type="input1">half</input>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_enable3" type="comparator">
+		<input type="input0">udp_enable3</input>
+		<input type="input1">half</input>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_enable4" type="comparator">
+		<input type="input0">udp_enable4</input>
+		<input type="input1">half</input>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_module1" type="gain">
+		<input type="input">udp_module1</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_angle1" type="gain">
+		<input type="input">udp_angle1</input>
+		<param name="gain">-1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_rpm1" type="gain">
+		<input type="input">udp_rpm1</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_module2" type="gain">
+		<input type="input">udp_module2</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_angle2" type="gain">
+		<input type="input">udp_angle2</input>
+		<param name="gain">-1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_rpm2" type="gain">
+		<input type="input">udp_rpm2</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_module3" type="gain">
+		<input type="input">udp_module3</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_angle3" type="gain">
+		<input type="input">udp_angle3</input>
+		<param name="gain">-1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_rpm3" type="gain">
+		<input type="input">udp_rpm3</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_module4" type="gain">
+		<input type="input">udp_module4</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_angle4" type="gain">
+		<input type="input">udp_angle4</input>
+		<param name="gain">-1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="udp_set_rpm4" type="gain">
+		<input type="input">udp_rpm4</input>
+		<param name="gain">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="module_mux1" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_module1_o</input>
+		<input type="selector">udp_set_enable1_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="angle_mux1" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_angle1_o</input>
+		<input type="selector">udp_set_enable1_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="rpm_mux1" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_rpm1_o</input>
+		<input type="selector">udp_set_enable1_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="module_mux2" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_module2_o</input>
+		<input type="selector">udp_set_enable2_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="angle_mux2" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_angle2_o</input>
+		<input type="selector">udp_set_enable2_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="rpm_mux2" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_rpm2_o</input>
+		<input type="selector">udp_set_enable2_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="module_mux3" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_module3_o</input>
+		<input type="selector">udp_set_enable3_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="angle_mux3" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_angle3_o</input>
+		<input type="selector">udp_set_enable3_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="rpm_mux3" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_rpm3_o</input>
+		<input type="selector">udp_set_enable3_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="module_mux4" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_module4_o</input>
+		<input type="selector">udp_set_enable4_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="angle_mux4" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_angle4_o</input>
+		<input type="selector">udp_set_enable4_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="rpm_mux4" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">udp_set_rpm4_o</input>
+		<input type="selector">udp_set_enable4_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="angle_bias1" type="constant">
+		<param name="value">0</param>
+	</fsigmodule>
+
+	<fsigmodule name="angle_bias2" type="constant">
+		<param name="value">0</param>
+	</fsigmodule>
+
+	<fsigmodule name="angle_bias3" type="constant">
+		<param name="value">0</param>
+	</fsigmodule>
+
+	<fsigmodule name="angle_bias4" type="constant">
+		<param name="value">0</param>
+	</fsigmodule>
+
+	<fsigmodule name="angle_postmux1" type="summator">
+		<input type="input0">angle_mux1_o</input>
+		<input type="input1">angle_bias1</input>
+	</fsigmodule>
+
+	<fsigmodule name="angle_postmux2" type="summator">
+		<input type="input0">angle_mux2_o</input>
+		<input type="input1">angle_bias2</input>
+	</fsigmodule>
+
+	<fsigmodule name="angle_postmux3" type="summator">
+		<input type="input0">angle_mux3_o</input>
+		<input type="input1">angle_bias3</input>
+	</fsigmodule>
+
+	<fsigmodule name="angle_postmux4" type="summator">
+		<input type="input0">angle_mux4_o</input>
+		<input type="input1">angle_bias4</input>
+	</fsigmodule>
+
+	<fsigmodule name="engine_critical_speed" type="constant">
+		<param name="value">1560</param>
+	</fsigmodule>
+
+	<fsigmodule name="engine1_overspeed" type="comparator">
+		<input type="input0">rotor1_freq_measured_o</input>
+		<input type="input1">engine_critical_speed</input>
+	</fsigmodule>
+
+	<fsigmodule name="engine2_overspeed" type="comparator">
+		<input type="input0">rotor2_freq_measured_o</input>
+		<input type="input1">engine_critical_speed</input>
+	</fsigmodule>
+
+	<fsigmodule name="engine3_overspeed" type="comparator">
+		<input type="input0">rotor3_freq_measured_o</input>
+		<input type="input1">engine_critical_speed</input>
+	</fsigmodule>
+
+	<fsigmodule name="engine4_overspeed" type="comparator">
+		<input type="input0">rotor4_freq_measured_o</input>
+		<input type="input1">engine_critical_speed</input>
+	</fsigmodule>
+
+	<fsigmodule name="engine_overspeed" type="or">
+		<input type="input0">engine1_overspeed_o</input>
+		<input type="input1">engine2_overspeed_o</input>
+		<input type="input2">engine3_overspeed_o</input>
+		<input type="input3">engine4_overspeed_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="udp_stopped_criterion" type="constant">
+		<param name="value">2</param>
+	</fsigmodule>
+
+	<fsigmodule name="engine_stoped_by_udp1" type="comparator">
+		<input type="input0">udp_stopped_criterion</input>
+		<input type="input1">udp_set_rpm1_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="engine_stoped_by_udp2" type="comparator">
+		<input type="input0">udp_stopped_criterion</input>
+		<input type="input1">udp_set_rpm2_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="engine_stoped_by_udp3" type="comparator">
+		<input type="input0">udp_stopped_criterion</input>
+		<input type="input1">udp_set_rpm3_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="engine_stoped_by_udp4" type="comparator">
+		<input type="input0">udp_stopped_criterion</input>
+		<input type="input1">udp_set_rpm4_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="engine_stoped_by_udp" type="and">
+		<input type="input0">engine_stoped_by_udp1_o</input>
+		<input type="input1">engine_stoped_by_udp2_o</input>
+		<input type="input2">engine_stoped_by_udp3_o</input>
+		<input type="input3">engine_stoped_by_udp4_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="engine_unblocked" type="rs_trigger">
+		<input type="input_s">engine_stoped_by_udp_o</input>
+		<input type="input_r">engine_overspeed_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="pid_rotor1_rpm" type="pid">
+		<input type="input">rpm_mux1_o</input>
+		<input type="feedback">rotor1_freq_measured_o</input>
+		<input type="enable">udp_set_enable1_o</input>
+		<param name="Kp">0.0001</param>
+		<param name="Ki">0.001</param>
+		<param name="Kd">0.0</param>
+		<param name="integral_min">0.0</param>
+		<param name="integral_max">1.0</param>
+		<param name="inp_rise_deriative">80</param>
+		<param name="inp_fall_deriative">60</param>
+		<param name="min">0.0</param>
+		<param name="max">1.0</param>
+		<input type="integral_presetter">zero</input>
+		<param name="preset_allowed_at_low">-1.0</param>
+		<param name="preset_allowed_at_high">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="regulator1_premux" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">pid_rotor1_rpm_o</input>
+		<input type="selector">udp_set_enable1_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="regulator1_mux" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">regulator1_premux_o</input>
+		<input type="selector">engine_unblocked_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="pid_rotor2_rpm" type="pid">
+		<input type="input">rpm_mux2_o</input>
+		<input type="feedback">rotor2_freq_measured_o</input>
+		<input type="enable">udp_set_enable2_o</input>
+		<param name="Kp">0.0001</param>
+		<param name="Ki">0.001</param>
+		<param name="Kd">0.0</param>
+		<param name="integral_min">0.0</param>
+		<param name="integral_max">1.0</param>
+		<param name="inp_rise_deriative">80</param>
+		<param name="inp_fall_deriative">60</param>
+		<param name="min">0.0</param>
+		<param name="max">1.0</param>
+		<input type="integral_presetter">zero</input>
+		<param name="preset_allowed_at_low">-1.0</param>
+		<param name="preset_allowed_at_high">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="regulator2_premux" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">pid_rotor2_rpm_o</input>
+		<input type="selector">udp_set_enable2_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="regulator2_mux" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">regulator2_premux_o</input>
+		<input type="selector">engine_unblocked_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="pid_rotor3_rpm" type="pid">
+		<input type="input">rpm_mux3_o</input>
+		<input type="feedback">rotor3_freq_measured_o</input>
+		<input type="enable">udp_set_enable3_o</input>
+		<param name="Kp">0.0001</param>
+		<param name="Ki">0.001</param>
+		<param name="Kd">0.0</param>
+		<param name="integral_min">0.0</param>
+		<param name="integral_max">1.0</param>
+		<param name="inp_rise_deriative">80</param>
+		<param name="inp_fall_deriative">60</param>
+		<param name="min">0.0</param>
+		<param name="max">1.0</param>
+		<input type="integral_presetter">zero</input>
+		<param name="preset_allowed_at_low">-1.0</param>
+		<param name="preset_allowed_at_high">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="regulator3_premux" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">pid_rotor3_rpm_o</input>
+		<input type="selector">udp_set_enable3_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="regulator3_mux" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">regulator3_premux_o</input>
+		<input type="selector">engine_unblocked_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="pid_rotor4_rpm" type="pid">
+		<input type="input">rpm_mux4_o</input>
+		<input type="feedback">rotor4_freq_measured_o</input>
+		<input type="enable">udp_set_enable4_o</input>
+		<param name="Kp">0.0001</param>
+		<param name="Ki">0.001</param>
+		<param name="Kd">0.0</param>
+		<param name="integral_min">0.0</param>
+		<param name="integral_max">1.0</param>
+		<param name="inp_rise_deriative">80</param>
+		<param name="inp_fall_deriative">60</param>
+		<param name="min">0.0</param>
+		<param name="max">1.0</param>
+		<input type="integral_presetter">zero</input>
+		<param name="preset_allowed_at_low">-1.0</param>
+		<param name="preset_allowed_at_high">1.0</param>
+	</fsigmodule>
+
+	<fsigmodule name="regulator4_premux" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">pid_rotor4_rpm_o</input>
+		<input type="selector">udp_set_enable4_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="regulator4_mux" type="multiplexor_2ch">
+		<input type="input0">zero</input>
+		<input type="input1">regulator4_premux_o</input>
+		<input type="selector">engine_unblocked_o</input>
+	</fsigmodule>
+
+	<fsigmodule name="rotor_mux1" type="frame_transformation">
+		<input type="input_x">module_mux1_o</input>
+		<input type="input_y">zero</input>
+		<input type="angle">angle_postmux1_o</input>
+		<param name="mode">right-cw</param>
+	</fsigmodule>
+
+	<fsigmodule name="rotor_mux2" type="frame_transformation">
+		<input type="input_x">module_mux2_o</input>
+		<input type="input_y">zero</input>
+		<input type="angle">angle_postmux2_o</input>
+		<param name="mode">right-cw</param>
+	</fsigmodule>
+
+	<fsigmodule name="rotor_mux3" type="frame_transformation">
+		<input type="input_x">module_mux3_o</input>
+		<input type="input_y">zero</input>
+		<input type="angle">angle_postmux3_o</input>
+		<param name="mode">right-cw</param>
+	</fsigmodule>
+
+	<fsigmodule name="rotor_mux4" type="frame_transformation">
+		<input type="input_x">module_mux4_o</input>
+		<input type="input_y">zero</input>
+		<input type="angle">angle_postmux4_o</input>
+		<param name="mode">right-cw</param>
+	</fsigmodule>
+
+<!-- прошлый x1
+-1,-1;-0.947,-0.948;-0.893,-0.896;-0.835,-0.843;-0.778,-0.791;-0.720,-0.739;-0.661,-0.687;-0.602,-0.635;-0.541,-0.582;-0.482,-0.53;-0.422,-0.478;-0.245,-0.321;-0.074,-0.165;0.037,-0.06;0.099,0;0.174,0.074;0.365,0.272;0.457,0.372;0.546,0.471;0.589,0.52;0.632,0.57;0.675,0.62;0.717,0.669;0.760,0.719;0.802,0.768;0.844,0.818;0.886,0.868;0.928,0.917;0.971,0.967;1,1
+-->
+
+	<fsigmodule name="servo_x1_mux" type="curve">
+		<input type="input">rotor_mux1_ox</input>
+		<param name="points">
+-1.000,-1;-0.971,-0.967;-0.928,-0.917;-0.886,-0.868;-0.844,-0.818;-0.802,-0.768;-0.760,-0.719;-0.717,-0.669;-0.676,-0.62;-0.632,-0.57;-0.589,-0.52;-0.546,-0.471;-0.457,-0.372;-0.365,-0.272;-0.174,-0.074;-0.099,0;-0.038,0.06;0.074,0.165;0.245,0.321;0.422,0.478;0.482,0.53;0.541,0.582;0.602,0.635;0.661,0.687;0.720,0.739;0.778,0.791;0.835,0.843;0.893,0.896;0.947,0.948;1.00,1
+</param>
+	</fsigmodule>
+
+<!-- прошлый y1
+-1,-1;-0.973,-0.967;-0.932,-0.917;-0.892,-0.868;-0.850,-0.818;-0.807,-0.768;-0.765,-0.719;-0.720,-0.669;-0.677,-0.62;-0.631,-0.57;-0.584,-0.52;-0.538,-0.471;-0.442,-0.372;-0.342,-0.272;-0.134,-0.074;-0.054,0;0.013,0.06;0.130,0.165;0.306,0.321;0.482,0.478;0.539,0.53;0.596,0.582;0.653,0.635;0.707,0.687;0.760,0.739;0.812,0.791;0.862,0.843;0.911,0.896;0.957,0.948;1,1
+-->
+
+	<fsigmodule name="servo_y1_mux" type="curve">
+		<input type="input">rotor_mux1_oy</input>
+		<param name="points">
+-1.000,-1;-0.973,-0.967;-0.933,-0.917;-0.892,-0.868;-0.850,-0.818;-0.807,-0.768;-0.765,-0.719;-0.721,-0.669;-0.677,-0.62;-0.631,-0.57;-0.584,-0.52;-0.538,-0.471;-0.442,-0.372;-0.342,-0.272;-0.134,-0.074;-0.054,0;0.013,0.06;0.130,0.165;0.306,0.321;0.482,0.478;0.539,0.53;0.596,0.582;0.653,0.635;0.707,0.687;0.760,0.739;0.812,0.791;0.862,0.843;0.911,0.896;0.957,0.948;1.000,1
+</param>
+	</fsigmodule>
+
+<!-- прошлый x2
+-1,-1;-0.971,-0.967;-0.928,-0.917;-0.886,-0.868;-0.844,-0.818;-0.802,-0.768;-0.760,-0.719;-0.717,-0.669;-0.675,-0.62;-0.632,-0.57;-0.589,-0.52;-0.546,-0.471;-0.457,-0.372;-0.365,-0.272;-0.174,-0.074;-0.099,0;-0.037,0.06;0.074,0.165;0.245,0.321;0.422,0.478;0.482,0.53;0.541,0.582;0.602,0.635;0.661,0.687;0.720,0.739;0.778,0.791;0.835,0.843;0.893,0.896;0.947,0.948;1,1
+-->
+
+	<fsigmodule name="servo_x2_mux" type="curve"> <!-- set -->
+		<input type="input">rotor_mux2_ox</input>
+		<param name="points">
+-1.000,-1;-0.971,-0.967;-0.928,-0.917;-0.886,-0.868;-0.844,-0.818;-0.802,-0.768;-0.760,-0.719;-0.717,-0.669;-0.676,-0.62;-0.632,-0.57;-0.589,-0.52;-0.546,-0.471;-0.457,-0.372;-0.365,-0.272;-0.174,-0.074;-0.099,0;-0.038,0.06;0.074,0.165;0.245,0.321;0.422,0.478;0.482,0.53;0.541,0.582;0.602,0.635;0.661,0.687;0.720,0.739;0.778,0.791;0.835,0.843;0.893,0.896;0.947,0.948;1.001,1
+</param>
+	</fsigmodule>
+<!-- прошлый y2
+-1,-1;-0.973,-0.967;-0.932,-0.917;-0.892,-0.868;-0.850,-0.818;-0.807,-0.768;-0.765,-0.719;-0.720,-0.669;-0.677,-0.62;-0.631,-0.57;-0.584,-0.52;-0.538,-0.471;-0.442,-0.372;-0.342,-0.272;-0.134,-0.074;-0.054,0;0.013,0.06;0.130,0.165;0.306,0.321;0.482,0.478;0.539,0.53;0.596,0.582;0.653,0.635;0.707,0.687;0.760,0.739;0.812,0.791;0.862,0.843;0.911,0.896;0.957,0.948;1,1
+-->
+
+	<fsigmodule name="servo_y2_mux" type="curve"> <!-- set -->
+		<input type="input">rotor_mux2_oy</input>
+		<param name="points">
+-1.000,-1;-0.973,-0.967;-0.933,-0.917;-0.892,-0.868;-0.850,-0.818;-0.807,-0.768;-0.765,-0.719;-0.721,-0.669;-0.677,-0.62;-0.631,-0.57;-0.584,-0.52;-0.538,-0.471;-0.442,-0.372;-0.342,-0.272;-0.134,-0.074;-0.054,0;0.013,0.06;0.130,0.165;0.306,0.321;0.482,0.478;0.539,0.53;0.596,0.582;0.653,0.635;0.707,0.687;0.760,0.739;0.812,0.791;0.862,0.843;0.911,0.896;0.957,0.948;1.000,1
+</param>
+	</fsigmodule>
+
+	<fsigmodule name="servo_x3_mux" type="curve"> <!-- set -->
+		<input type="input">rotor_mux3_ox</input>
+		<param name="points">
+-1,-1;-0.947,-0.948;-0.893,-0.896;-0.835,-0.843;-0.778,-0.791;-0.720,-0.739;-0.661,-0.687;-0.602,-0.635;-0.541,-0.582;-0.482,-0.53;-0.422,-0.478;-0.245,-0.321;-0.074,-0.165;0.037,-0.06;0.099,0;0.174,0.074;0.365,0.272;0.457,0.372;0.546,0.471;0.589,0.52;0.632,0.57;0.675,0.62;0.717,0.669;0.760,0.719;0.802,0.768;0.844,0.818;0.886,0.868;0.928,0.917;0.971,0.967;1,1
+</param>
+	</fsigmodule>
+
+	<fsigmodule name="servo_y3_mux" type="curve"> <!-- set -->
+		<input type="input">rotor_mux3_oy</input>
+		<param name="points">
+-1,-1;-0.973,-0.967;-0.932,-0.917;-0.892,-0.868;-0.850,-0.818;-0.807,-0.768;-0.765,-0.719;-0.720,-0.669;-0.677,-0.62;-0.631,-0.57;-0.584,-0.52;-0.538,-0.471;-0.442,-0.372;-0.342,-0.272;-0.134,-0.074;-0.054,0;0.013,0.06;0.130,0.165;0.306,0.321;0.482,0.478;0.539,0.53;0.596,0.582;0.653,0.635;0.707,0.687;0.760,0.739;0.812,0.791;0.862,0.843;0.911,0.896;0.957,0.948;1,1
+</param>
+	</fsigmodule>
+
+<!-- прошлый x4
+-1,-1;-0.947,-0.948;-0.893,-0.896;-0.835,-0.843;-0.778,-0.791;-0.720,-0.739;-0.661,-0.687;-0.602,-0.635;-0.541,-0.582;-0.482,-0.53;-0.422,-0.478;-0.245,-0.321;-0.074,-0.165;0.037,-0.06;0.099,0;0.174,0.074;0.365,0.272;0.457,0.372;0.546,0.471;0.589,0.52;0.632,0.57;0.675,0.62;0.717,0.669;0.760,0.719;0.802,0.768;0.844,0.818;0.886,0.868;0.928,0.917;0.971,0.967;1,1
+-->
+
+	<fsigmodule name="servo_x4_mux" type="curve">
+		<input type="input">rotor_mux4_ox</input>
+		<param name="points">
+-1.00,-1;-0.947,-0.948;-0.893,-0.896;-0.835,-0.843;-0.778,-0.791;-0.720,-0.739;-0.661,-0.687;-0.602,-0.635;-0.541,-0.582;-0.482,-0.53;-0.422,-0.478;-0.245,-0.321;-0.074,-0.165;0.038,-0.06;0.099,0;0.174,0.074;0.365,0.272;0.457,0.372;0.546,0.471;0.589,0.52;0.632,0.57;0.676,0.62;0.717,0.669;0.760,0.719;0.802,0.768;0.844,0.818;0.886,0.868;0.928,0.917;0.971,0.967;1.000,1
+</param>
+	</fsigmodule>
+
+<!-- прошлый y4
+-1,-1;-0.973,-0.967;-0.932,-0.917;-0.892,-0.868;-0.850,-0.818;-0.807,-0.768;-0.765,-0.719;-0.720,-0.669;-0.677,-0.62;-0.631,-0.57;-0.584,-0.52;-0.538,-0.471;-0.442,-0.372;-0.342,-0.272;-0.134,-0.074;-0.054,0;0.013,0.06;0.130,0.165;0.306,0.321;0.482,0.478;0.539,0.53;0.596,0.582;0.653,0.635;0.707,0.687;0.760,0.739;0.812,0.791;0.862,0.843;0.911,0.896;0.957,0.948;1,1
+-->
+
+	<fsigmodule name="servo_y4_mux" type="curve">
+		<input type="input">rotor_mux4_oy</input>
+		<param name="points">
+-1.000,-1;-0.973,-0.967;-0.933,-0.917;-0.892,-0.868;-0.850,-0.818;-0.807,-0.768;-0.765,-0.719;-0.721,-0.669;-0.677,-0.62;-0.631,-0.57;-0.584,-0.52;-0.538,-0.471;-0.442,-0.372;-0.342,-0.272;-0.134,-0.074;-0.054,0;0.013,0.06;0.130,0.165;0.306,0.321;0.482,0.478;0.539,0.53;0.596,0.582;0.653,0.635;0.707,0.687;0.760,0.739;0.812,0.791;0.862,0.843;0.911,0.896;0.957,0.948;1.000,1
+</param>
+	</fsigmodule>
+
+
+	<fsigmodule name="percent_to_angle_collective1" type="curve">
+		<input type="input">module_mux1_o</input>
+		<param name="points">
+			0.00,0;
+			0.50,16;
+			0.60,20;
+			0.70,25;
+			0.80,30;
+			0.95,36.5;
+			1.00,38
+		</param>
+	</fsigmodule>
+
+	<fsigmodule name="angle_cyclic_rad_to_deg1" type="gain">
+		<input type="input">angle_mux1_o</input>
+		<param name="gain">57.296</param>
+	</fsigmodule>
+
+	<fsigmodule name="percent_to_angle_collective2" type="curve">
+		<input type="input">module_mux2_o</input>
+		<param name="points">
+			0.00,0;
+			0.50,16;
+			0.60,20;
+			0.70,25;
+			0.80,30;
+			0.95,36.5;
+			1.00,38
+		</param>
+	</fsigmodule>
+
+	<fsigmodule name="angle_cyclic_rad_to_deg2" type="gain">
+		<input type="input">angle_mux2_o</input>
+		<param name="gain">57.296</param>
+	</fsigmodule>
+
+	<fsigmodule name="percent_to_angle_collective3" type="curve">
+		<input type="input">module_mux3_o</input>
+		<param name="points">
+			0.00,0;
+			0.50,16;
+			0.60,20;
+			0.70,25;
+			0.80,30;
+			0.95,36.5;
+			1.00,38
+		</param>
+	</fsigmodule>
+
+	<fsigmodule name="angle_cyclic_rad_to_deg3" type="gain">
+		<input type="input">angle_mux3_o</input>
+		<param name="gain">57.296</param>
+	</fsigmodule>
+
+	<fsigmodule name="percent_to_angle_collective4" type="curve">
+		<input type="input">module_mux4_o</input>
+		<param name="points">
+			0.00,0;
+			0.50,16;
+			0.60,20;
+			0.70,25;
+			0.80,30;
+			0.95,36.5;
+			1.00,38
+		</param>
+	</fsigmodule>
+
+	<fsigmodule name="angle_cyclic_rad_to_deg4" type="gain">
+		<input type="input">angle_mux4_o</input>
+		<param name="gain">57.296</param>
+	</fsigmodule>
+
+<!--
+	<fsigmodule name="rotor_override" type="extcmd">
+		<param name="cmd">rotor</param>
+		<param name="nonlogic">1</param>
+		<param name="min">0</param>
+		<param name="max">1</param>
+	</fsigmodule>
+	-->
+
+	<list name="output">
+
+		<add_sig>rotor_mux1_ox</add_sig>
+		<add_sig>rotor_mux1_oy</add_sig>
+		<add_sig>rotor_mux2_ox</add_sig>
+		<add_sig>rotor_mux2_oy</add_sig>
+		<add_sig>rotor_mux3_ox</add_sig>
+		<add_sig>rotor_mux3_oy</add_sig>
+		<add_sig>rotor_mux4_ox</add_sig>
+		<add_sig>rotor_mux4_oy</add_sig>
+
+	</list>
+
+	<list name="telemetry">
+
+		<add_sig>udp_set_enable1_o</add_sig>
+		<add_sig>udp_set_enable2_o</add_sig>
+		<add_sig>udp_set_enable3_o</add_sig>
+		<add_sig>udp_set_enable4_o</add_sig>
+		<add_sig>udp_set_angle1_o</add_sig>
+		<add_sig>udp_set_module1_o</add_sig>
+		<add_sig>udp_set_rpm1_o</add_sig>
+		<add_sig>udp_set_angle2_o</add_sig>
+		<add_sig>udp_set_module2_o</add_sig>
+		<add_sig>udp_set_rpm2_o</add_sig>
+		<add_sig>udp_set_angle3_o</add_sig>
+		<add_sig>udp_set_module3_o</add_sig>
+		<add_sig>udp_set_rpm3_o</add_sig>
+		<add_sig>udp_set_angle4_o</add_sig>
+		<add_sig>udp_set_module4_o</add_sig>
+		<add_sig>udp_set_rpm4_o</add_sig>
+
+		<add_sig>rotor1_freq_measured_o</add_sig>
+		<add_sig>rotor2_freq_measured_o</add_sig>
+		<add_sig>rotor3_freq_measured_o</add_sig>
+		<add_sig>rotor4_freq_measured_o</add_sig>
+
+		<add_sig>pid_rotor1_rpm_o</add_sig>
+		<add_sig>pid_rotor2_rpm_o</add_sig>
+		<add_sig>pid_rotor3_rpm_o</add_sig>
+		<add_sig>pid_rotor4_rpm_o</add_sig>
+
+		<add_sig>regulator1_mux_o</add_sig>
+		<add_sig>regulator2_mux_o</add_sig>
+		<add_sig>regulator3_mux_o</add_sig>
+		<add_sig>regulator4_mux_o</add_sig>
+
+		<add_sig>rotor_mux1_ox</add_sig>
+		<add_sig>rotor_mux1_oy</add_sig>
+		<add_sig>rotor_mux2_ox</add_sig>
+		<add_sig>rotor_mux2_oy</add_sig>
+		<add_sig>rotor_mux3_ox</add_sig>
+		<add_sig>rotor_mux3_oy</add_sig>
+		<add_sig>rotor_mux4_ox</add_sig>
+		<add_sig>rotor_mux4_oy</add_sig>
+
+		<add_sig>zero</add_sig>
+
+		<add_sig>engine_stoped_by_udp_o</add_sig>
+		<add_sig>engine_overspeed_o</add_sig>
+		<add_sig>engine_unblocked_o</add_sig>
+
+		<add_sig>percent_to_angle_collective1_o</add_sig>
+		<add_sig>angle_cyclic_rad_to_deg1_o</add_sig>
+
+		<add_sig>percent_to_angle_collective2_o</add_sig>
+		<add_sig>angle_cyclic_rad_to_deg2_o</add_sig>
+
+		<add_sig>percent_to_angle_collective3_o</add_sig>
+		<add_sig>angle_cyclic_rad_to_deg3_o</add_sig>
+
+		<add_sig>percent_to_angle_collective4_o</add_sig>
+		<add_sig>angle_cyclic_rad_to_deg4_o</add_sig>
+
+	</list>
+
+</fsigmodule_structure>
