@@ -2,31 +2,30 @@
   <div class="sound-card">
     <h2 class="sound-card-title">{{ pid.name }}</h2>
     <div
-        v-for="(slider, index) in sliders"
-        :key="slider.key"
-        class="slider-container">
+      v-for="(slider, index) in sliders"
+      :key="slider.key"
+      class="slider-container">
       <label class="slider-label">{{ slider.label }}</label>
       <div class="slider-control">
         <input
-            v-model.number="slider.value"
-            class="left-value"
-            type="text"
-            @change="updateSliderFromInput(index)"/>
+          v-model.number="slider.value"
+          class="left-value"
+          type="text"
+          @change="updateSliderFromInput(index)" />
         <div class="slider-wrapper">
           <input
-              v-model.number="slider.value"
-              :max="slider.max"
-              :min="slider.min"
-              class="slider"
-              type="range"
-              step="0.0001"
-
-          />
+            v-model.number="slider.value"
+            :max="slider.max"
+            :min="slider.min"
+            class="slider"
+            type="range"
+            step="0.0001"
+            @change="updateSliderFromInput(index)" />
           <div
-              :style="{
+            :style="{
               width: `${((slider.value - slider.min) / (slider.max - slider.min)) * 100}%`,
             }"
-              class="slider-progress"></div>
+            class="slider-progress"></div>
           <div class="slider-progress-back"></div>
         </div>
       </div>
@@ -38,36 +37,36 @@
 import { ref, watch, onMounted } from 'vue'
 
 interface IPid {
-  name: string;
-  Kp: number;
-  Ki: number;
-  Kd: number;
-  integral_min: number;
-  integral_max: number;
-  inp_rise_deriative: number;
-  inp_fall_deriative: number;
-  min: number;
-  max: number;
-  preset_allowed_at_low: number;
-  preset_allowed_at_high: number;
+  name: string
+  Kp: number
+  Ki: number
+  Kd: number
+  integral_min: number
+  integral_max: number
+  inp_rise_deriative: number
+  inp_fall_deriative: number
+  min: number
+  max: number
+  preset_allowed_at_low: number
+  preset_allowed_at_high: number
 }
 
 interface Slider {
-  key: string;
-  label: string;
-  min: number;
-  max: number;
-  value: number;
-  pidKey: keyof IPid;
+  key: string
+  label: string
+  min: number
+  max: number
+  value: number
+  pidKey: keyof IPid
 }
 
 const props = defineProps<{
-  pid: IPid;
-}>();
+  pid: IPid
+}>()
 
-const emit = defineEmits(['update:pid']);
+const emit = defineEmits(['update-pid'])
 
-const sliders = ref<Slider[]>([]);
+const sliders = ref<Slider[]>([])
 
 const initializeSliders = () => {
   sliders.value = [
@@ -77,7 +76,7 @@ const initializeSliders = () => {
       min: props.pid.preset_allowed_at_low,
       max: props.pid.preset_allowed_at_high,
       value: props.pid.Kp,
-      pidKey: 'Kp'
+      pidKey: 'Kp',
     },
     {
       key: 'ki',
@@ -85,7 +84,7 @@ const initializeSliders = () => {
       min: props.pid.integral_min,
       max: props.pid.integral_max,
       value: props.pid.Ki,
-      pidKey: 'Ki'
+      pidKey: 'Ki',
     },
     {
       key: 'kd',
@@ -93,33 +92,37 @@ const initializeSliders = () => {
       min: props.pid.inp_fall_deriative,
       max: props.pid.inp_rise_deriative,
       value: props.pid.Kd,
-      pidKey: 'Kd'
-    }
-  ];
-};
+      pidKey: 'Kd',
+    },
+  ]
+}
 
 const updateSliderFromInput = (index: number) => {
-  const slider = sliders.value[index];
+  const slider = sliders.value[index]
 
   if (slider.value < slider.min || slider.value > slider.max) {
-    alert('Значение должно быть в пределах от ' + slider.min + ' до ' + slider.max);
-    slider.value = Math.max(
-        slider.min,
-        Math.min(slider.max, slider.value)
-    );
+    alert(
+      'Значение должно быть в пределах от ' + slider.min + ' до ' + slider.max
+    )
+    slider.value = Math.max(slider.min, Math.min(slider.max, slider.value))
   }
-  const updatedPid = { ...props.pid };
-  updatedPid[slider.pidKey] = slider.value;
-  emit('update:pid', updatedPid);
-};
+  const updatedPid = { ...props.pid }
+  updatedPid[slider.pidKey] = slider.value
+  console.log(updatedPid)
+  emit('update-pid', updatedPid)
+}
 
-watch(() => props.pid, () => {
-  initializeSliders();
-}, { deep: true });
+watch(
+  () => props.pid,
+  () => {
+    initializeSliders()
+  },
+  { deep: true }
+)
 
 onMounted(() => {
-  initializeSliders();
-});
+  initializeSliders()
+})
 </script>
 
 <style scoped>
@@ -164,7 +167,7 @@ onMounted(() => {
   width: 48px;
   height: 36px;
   background-color: #fff;
-  border: 1px solid #4414EC;
+  border: 1px solid #4414ec;
   border-radius: 8px;
   display: flex;
   align-items: center;

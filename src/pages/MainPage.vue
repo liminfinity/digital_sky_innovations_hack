@@ -1,10 +1,23 @@
 <script lang="ts" setup>
 import MainHeader from '../widgets/MainHeader.vue'
 import PIDCard from '../widgets/PIDCard.vue'
-import {usePidsStore} from "../store/pidsStore.ts";
+import { usePidsStore } from '../store/pidsStore.ts'
+import { onMounted } from 'vue'
+import { getPids } from '../api.ts'
 
 const store = usePidsStore()
 
+function updatePids(v) {
+  console.log(v)
+  store.data = v.data
+  console.log(store.data)
+}
+
+onMounted(async () => {
+  const res = await getPids()
+  if (res) store.data = res.data
+  console.log(store.data)
+})
 </script>
 
 <template>
@@ -12,7 +25,11 @@ const store = usePidsStore()
     <div class="content">
       <MainHeader />
       <div class="cards-grid">
-        <PIDCard :pid="pid" v-for="pid in store.data" :key="pid.name" />
+        <PIDCard
+          :pid="pid"
+          v-for="pid in store.data"
+          :key="pid.name"
+          @update-pid="updatePids" />
       </div>
     </div>
   </div>

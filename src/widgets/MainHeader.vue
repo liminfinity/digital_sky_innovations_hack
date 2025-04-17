@@ -1,6 +1,14 @@
 <script lang="ts" setup>
 import MainButton from '../components/MainButton.vue'
 import router from '../router/index.js'
+import { usePidsStore } from '../store/pidsStore.ts'
+import { savePidsApi } from '../api.ts'
+
+async function savePIDs() {
+  const store = usePidsStore()
+  const res = await savePidsApi(store.data)
+  if (res) console.log(res)
+}
 </script>
 
 <template>
@@ -14,7 +22,10 @@ import router from '../router/index.js'
     </div>
     <input class="search" placeholder="Поиск по ПИДу..." type="text" />
     <div class="btns">
-      <MainButton :is-primary="true" icon-path="src/assets/save.svg"
+      <MainButton
+        :is-primary="true"
+        icon-path="src/assets/save.svg"
+        @click="savePIDs"
         >Сохранить
       </MainButton>
       <MainButton
@@ -29,7 +40,7 @@ import router from '../router/index.js'
 
 <style lang="scss" scoped>
 .wrapper-header {
-  padding: 30px 0;
+  padding: 30px 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -37,7 +48,7 @@ import router from '../router/index.js'
   position: fixed;
   background-color: #f9f7fc;
   z-index: 10;
-  width: 100%;
+  width: 80%;
   left: 0;
 }
 

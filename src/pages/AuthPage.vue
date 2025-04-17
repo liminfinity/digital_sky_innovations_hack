@@ -1,6 +1,16 @@
 <script lang="ts" setup>
 import MainButton from '../components/MainButton.vue'
-import router from '../router/index.js'
+import { ref } from 'vue'
+import { loginApi } from '../api.ts'
+import router from '../router'
+
+const userName = ref('')
+const password = ref('')
+
+async function loginUser() {
+  const res = await loginApi(userName.value, password.value)
+  await router.push('/main')
+}
 </script>
 
 <template>
@@ -10,11 +20,11 @@ import router from '../router/index.js'
       <div class="form-values">
         <div class="inputs">
           <label for="login">Логин</label>
-          <input id="login" />
+          <input id="login" v-model="userName" />
           <label for="password">Пароль</label>
-          <input id="password" />
+          <input id="password" v-model="password" />
         </div>
-        <MainButton :is-primary="true" class="btn" @click="router.push('/main')"
+        <MainButton :is-primary="true" class="btn" @click="loginUser"
           >Войти
         </MainButton>
       </div>

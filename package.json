@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.8.4",
     "pinia": "^3.0.2",
     "reset-css": "^5.0.2",
     "vue": "^3.5.13",
