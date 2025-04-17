@@ -239,7 +239,7 @@
 		<input type="feedback">rotor1_freq_measured_o</input>
 		<input type="enable">udp_set_enable1_o</input>
 		<input type="integral_presetter">zero</input>
-		<param name="Kp">0.0002</param>
+		<param name="Kp">0.0001</param>
 		<param name="Ki">0.001</param>
 		<param name="Kd">0.0</param>
 		<param name="integral_min">0.0</param>

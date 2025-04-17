@@ -32,3 +32,5 @@ pytest_cache/
 .ipynb_checkpoints/
 
 *.db
+
+pids/pid_*.json
