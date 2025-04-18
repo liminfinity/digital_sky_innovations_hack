@@ -75,6 +75,7 @@ function convertISODateToTimeAndDate(isoDateString: string): [string, string] {
   margin-bottom: 10px;
   position: fixed;
   top: 30px;
+  width: 80%;
 }
 
 .title {

@@ -2,7 +2,7 @@
 import MainButton from '../components/MainButton.vue'
 import router from '../router/index.js'
 import { usePidsStore } from '../store/pidsStore.ts'
-import { savePidsApi } from '../api.ts'
+import {getPidById, savePidsApi} from '../api.ts'
 import {useStoriesStore} from "../store/storiesStore.ts";
 
 const store = usePidsStore()
@@ -13,6 +13,21 @@ async function savePIDs() {
   if (res) storiesStore.stories.push(res)
   console.log(storiesStore.stories)
 }
+
+async function undo() {
+  const res = await getPidById(storiesStore.stories[storiesStore.stories.length-2].id)
+  console.log(res.data.pids)
+  if (res)
+    store.data = res.data.pids
+  console.log(store.data)
+}
+
+async function reset() {
+  const res = await getPidById(storiesStore.stories[0].id)
+  console.log(res.data.pids)
+  if (res)
+    store.data = res.data.pids
+}
 </script>
 
 <template>
@@ -20,8 +35,8 @@ async function savePIDs() {
     <div>
       <h1 class="title">ПИД-регулятор</h1>
       <div class="second-btns">
-        <MainButton :is-primary="false">Undo</MainButton>
-        <MainButton :is-primary="false">Reset to original</MainButton>
+        <MainButton :is-primary="false" @click="undo">Undo</MainButton>
+        <MainButton :is-primary="false" @click="reset">Reset to original</MainButton>
       </div>
     </div>
     <input class="search" placeholder="Поиск по ПИДу..." type="text" />
@@ -82,5 +97,6 @@ async function savePIDs() {
   display: flex;
   flex-direction: row;
   gap: 12px;
+  margin-top: 15px;
 }
 </style>

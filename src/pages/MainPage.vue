@@ -3,9 +3,11 @@ import MainHeader from '../widgets/MainHeader.vue'
 import PIDCard from '../widgets/PIDCard.vue'
 import { usePidsStore } from '../store/pidsStore.ts'
 import { onMounted } from 'vue'
-import { getPids } from '../api.ts'
+import {getPids, savePidsApi} from '../api.ts'
+import {useStoriesStore} from "../store/storiesStore.ts";
 
 const store = usePidsStore()
+const storiesStore = useStoriesStore()
 
 function updatePids(v: any) {
   console.log(v)
@@ -18,6 +20,8 @@ onMounted(async () => {
     const res = await getPids()
     //@ts-ignore
     if (res) store.data = res.data.pids
+    const saveRes = await savePidsApi(store.data)
+    if (saveRes) storiesStore.stories.push(saveRes)
   }
 })
 </script>
