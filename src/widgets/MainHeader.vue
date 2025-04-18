@@ -3,11 +3,15 @@ import MainButton from '../components/MainButton.vue'
 import router from '../router/index.js'
 import { usePidsStore } from '../store/pidsStore.ts'
 import { savePidsApi } from '../api.ts'
+import {useStoriesStore} from "../store/storiesStore.ts";
+
+const store = usePidsStore()
+const storiesStore = useStoriesStore()
 
 async function savePIDs() {
-  const store = usePidsStore()
   const res = await savePidsApi(store.data)
-  if (res) console.log(res)
+  if (res) storiesStore.stories.push(res)
+  console.log(storiesStore.stories)
 }
 </script>
 

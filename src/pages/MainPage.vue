@@ -9,15 +9,16 @@ const store = usePidsStore()
 
 function updatePids(v: any) {
   console.log(v)
-  store.data = v.data
-  console.log(store.data)
+  const changedIndex = store.data.findIndex((pid) => pid.name === v.name)
+  store.data[changedIndex] = v
 }
 
 onMounted(async () => {
-  const res = await getPids()
-  //@ts-ignore
-  if (res) store.data = res.data
-  console.log(store.data)
+  if (store.data.length === 0) {
+    const res = await getPids()
+    //@ts-ignore
+    if (res) store.data = res.data.pids
+  }
 })
 </script>
 

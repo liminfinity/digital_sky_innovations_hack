@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'https://rninl-92-126-119-99.a.free.pinggy.link/api/v1'
+const baseUrl = 'http://192.168.91.230:8000/api/v1'
 
 export async function loginApi(username: string, password: string) {
   let res
@@ -30,4 +30,10 @@ export async function savePidsApi(pids: any) {
     .then((r) => (res = r.data))
     .catch((e) => alert(e))
   return res
+}
+
+export async function getPidById(pidId: number) {
+    let res
+    await axios.get(`${baseUrl}/pids/${pidId}`).then((r) => res = r.data).catch((e) => alert(e))
+    return res
 }

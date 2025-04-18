@@ -109,7 +109,6 @@ const updateSliderFromInput = (index: number) => {
   const updatedPid = { ...props.pid }
   // @ts-ignore
   updatedPid[slider.pidKey] = slider.value
-  console.log(updatedPid)
   emit('update-pid', updatedPid)
 }
 

@@ -12,14 +12,14 @@
     <div class="history-container">
       <div class="history-list">
         <div
-          v-for="(item, index) in historyItems"
-          :key="index"
+          v-for="story in storiesStore.stories"
+          :key="story.id"
           class="history-item">
           <div class="item-info">
-            <div class="timestamp">{{ item.time }} {{ item.date }}</div>
-            <div class="user">{{ item.user }}</div>
+            <div class="timestamp">{{ convertISODateToTimeAndDate(story.created_at)[0] }} {{ convertISODateToTimeAndDate(story.created_at)[1] }}</div>
+            <div class="user">{{ story.username }}</div>
           </div>
-          <button class="apply-button">Применить изменение</button>
+          <button class="apply-button" @click="selectStory(story.id)">Применить изменение</button>
         </div>
       </div>
     </div>
@@ -27,18 +27,34 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import MainButton from '../components/MainButton.vue'
 import router from '../router/index.js'
+import {useStoriesStore} from "../store/storiesStore.ts";
+import {getPidById} from "../api.ts";
+import {usePidsStore} from "../store/pidsStore.ts";
 
-const historyItems = ref(
-  Array(20)
-    .map(() => ({
-      time: '12:00',
-      date: '17.04.2025',
-      user: 'Пользователь(логин)',
-    }))
-)
+const store = usePidsStore()
+const storiesStore = useStoriesStore()
+
+async function selectStory(storyId: number) {
+  const res = await getPidById(storyId)
+  console.log(res.data.pids)
+  if (res)
+    store.data = res.data.pids
+}
+
+function convertISODateToTimeAndDate(isoDateString: string): [string, string] {
+  const date = new Date(isoDateString);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const timeString = `${hours}:${minutes.toString().padStart(2, '0')}`;
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear();
+  const dateString = `${day}.${month}.${year}`;
+  return [timeString, dateString];
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -57,6 +73,8 @@ const historyItems = ref(
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  position: fixed;
+  top: 30px;
 }
 
 .title {
